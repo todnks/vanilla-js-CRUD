@@ -11,7 +11,6 @@ export class Component {
   setup() {}
   Eventadd(eventType, selector, callback, option = {}) {
     const selectList = [...document.querySelectorAll(selector)];
-    console.log(selectList);
     if (selectList.length > 1) {
       selectList.forEach((item) => {
         item.addEventListener(eventType, selector, callback);
@@ -32,7 +31,6 @@ export class Component {
   onMounted() {}
 
   render() {
-    console.log(this.#element);
     this.#element.innerHTML = this.template();
   }
 

@@ -1,5 +1,5 @@
-import { Component } from '@core/Component';
-import router from '@router';
+import { Component } from '@/core/Component';
+import router from '@/router';
 export class App extends Component {
   onMounted() {
     router.start();
@@ -11,7 +11,6 @@ export class App extends Component {
     <div data-href="/test">test</div>
     </div>
       <div class="content">
-
       </div>
     `;
   }

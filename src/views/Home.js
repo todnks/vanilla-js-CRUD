@@ -1,5 +1,4 @@
-import { Component } from '@core/Component';
-
+import { Component } from '@/core/Component';
 export class Home extends Component {
   onMounted() {}
   template() {

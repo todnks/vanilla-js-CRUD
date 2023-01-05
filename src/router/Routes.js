@@ -1,8 +1,8 @@
-import { Home } from '@views/Home';
-import { test } from '@views/test';
-const Routes = {
+import { Home } from '@/views/Home';
+import { test } from '@/views/test';
+const routes = {
   '/': Home,
   '/test': test,
 };
 
-export default Routes;
+export default routes;

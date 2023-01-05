@@ -24,11 +24,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@style': path.resolve(__dirname, 'src/style/'),
-      '@core': path.resolve(__dirname, 'src/core/'),
-      '@router': path.resolve(__dirname, 'src/router/'),
-      '@views': path.resolve(__dirname, 'src/views/'),
-      '@service': path.resolve(__dirname, 'src/service/'),
+      '@/style': path.resolve(__dirname, 'src/style/'),
+      '@/core': path.resolve(__dirname, 'src/core/'),
+      '@/router': path.resolve(__dirname, 'src/router/'),
+      '@/views': path.resolve(__dirname, 'src/views/'),
+      '@/service': path.resolve(__dirname, 'src/service/'),
     },
   },
   plugins: [
