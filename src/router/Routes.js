@@ -1,8 +1,11 @@
 import { Home } from '@/views/Home';
-import { test } from '@/views/test';
+import { Signin } from '@/views/Signin';
+import { Signup } from '@/views/Signup';
+
 const routes = {
   '/': Home,
-  '/test': test,
+  '/signup': Signup,
+  '/signin': Signin,
 };
 
 export default routes;

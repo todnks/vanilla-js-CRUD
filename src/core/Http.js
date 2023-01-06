@@ -23,7 +23,6 @@ export class Http {
   }
 
   async post(params) {
-    console.log(params);
     const res = await fetch(`${this.baseurl}`, {
       method: 'POST',
       headers: {

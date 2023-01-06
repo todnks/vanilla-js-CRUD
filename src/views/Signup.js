@@ -1,7 +1,8 @@
 import { Component } from '@/core/Component';
 import { Userservice } from '@/service/Userservice';
 import router from '@/router';
-export class test extends Component {
+
+export class Signup extends Component {
   setup() {
     this.userservice = new Userservice();
   }
@@ -21,6 +22,7 @@ export class test extends Component {
   }
   template() {
     return `
+        <div>회원가입</div>
         <input type="text" name="email">
         <input type="text" name="password">
         <button type="button" class="signup">회원가입</button>
