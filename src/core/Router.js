@@ -1,3 +1,5 @@
+import { Home } from '@/views/Home';
+
 export class Router {
   element;
   selector;
@@ -12,7 +14,10 @@ export class Router {
     this.element = element;
   }
   addEvent() {
-    window.addEventListener('popstate', (event) => {
+    window.addEventListener('popstate', () => {
+      this.routes();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
       this.routes();
     });
     document.addEventListener('click', ({ target }) => {
@@ -28,7 +33,7 @@ export class Router {
   routes() {
     const urlname = window.location.hash.replace('#', '');
     let selectComponet = Object.values(this.#routes)[this.findroutes(urlname)];
-
+    if (!selectComponet) selectComponet = Home;
     new selectComponet({ element: this.element });
   }
   findroutes(path) {

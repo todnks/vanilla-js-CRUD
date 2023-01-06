@@ -22,6 +22,7 @@ export class Signup extends Component {
   }
   template() {
     return `
+    <div data-href="/">홈</div>
         <div>회원가입</div>
         <input type="text" name="email">
         <input type="text" name="password">

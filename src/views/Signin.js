@@ -1,6 +1,7 @@
 import { Component } from '@/core/Component';
 import router from '@/router';
 import { Userservice } from '@/service/Userservice';
+
 export class Signin extends Component {
   setup() {
     this.userservice = new Userservice();
@@ -21,6 +22,7 @@ export class Signin extends Component {
   }
   template() {
     return `
+    <div data-href="/">홈</div>
     <div>로그인</div>
     <input type="text" name="email">
     <input type="text" name="password">

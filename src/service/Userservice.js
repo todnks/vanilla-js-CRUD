@@ -1,11 +1,13 @@
 const http = new Http();
 import { Http } from '@/core/Http';
+import { Repository } from '@/core/Repository';
 import { Validator } from '@/core/Validator';
 
 export class Userservice {
   constructor() {
     this.http = new Http('/user/');
     this.validator = Validator;
+    this.repository = Repository;
   }
   async finduser(email) {
     const userData = await this.http.get({
@@ -39,6 +41,10 @@ export class Userservice {
       alert('비밀번호가 일치하지 않습니다');
       return;
     }
+    this.repository.set('user', getuserdata);
+    await this.http.post({
+      loginDate: new Date(),
+    });
     return true;
   }
   async signup({ email, password }) {
@@ -66,6 +72,14 @@ export class Userservice {
       registerDate: new Date(),
       loginDate: new Date(),
     });
+    return true;
+  }
+
+  logout() {
+    if (this.repository.get('user') === undefined) {
+      return false;
+    }
+    this.repository.remove('user');
     return true;
   }
 }
