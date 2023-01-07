@@ -29,12 +29,14 @@ export class Home extends Component {
         <div>이메일:${this.userdata.email}</div>
         <button class="logout">로그아웃</button>
         <div data-href="/write">글쓰기</div>
+        <div data-href="/board">게시판</div>
       `;
     }
     return `
     <div data-href="/">home</div>
     <div data-href="/signup">회원가입</div>
     <div data-href="/signin">로그인</div>
+    <div data-href="/board">게시판</div>
     `;
   }
 }

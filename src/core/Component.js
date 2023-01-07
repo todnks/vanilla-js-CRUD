@@ -27,7 +27,6 @@ export class Component {
   template() {
     return '';
   }
-
   onMounted() {}
 
   render() {

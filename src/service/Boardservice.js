@@ -19,4 +19,8 @@ export class Boardservice {
     console.log(data);
     await this.http.post(data);
   }
+  async listup(params) {
+    const list = await this.http.get(params);
+    return list;
+  }
 }
