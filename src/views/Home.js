@@ -7,7 +7,7 @@ export class Home extends Component {
   userdata;
   setup() {
     this.Repository = Repository;
-    this.userdata = JSON.parse(this.Repository.get('user'));
+    this.userdata = this.Repository.get('user');
     this.userservice = new Userservice();
   }
   logout() {
@@ -28,6 +28,7 @@ export class Home extends Component {
       return `
         <div>이메일:${this.userdata.email}</div>
         <button class="logout">로그아웃</button>
+        <div data-href="/write">글쓰기</div>
       `;
     }
     return `

@@ -33,12 +33,8 @@ export class Userservice {
       return;
     }
     const getuserdata = await this.finduser(email);
-    if (!getuserdata) {
-      alert('존재하지않는 유저입니다');
-      return;
-    }
-    if (password != getuserdata.password) {
-      alert('비밀번호가 일치하지 않습니다');
+    if (!getuserdata && password != getuserdata.password) {
+      alert('아이디혹은 비밀번호 틀림');
       return;
     }
     this.repository.set('user', getuserdata);

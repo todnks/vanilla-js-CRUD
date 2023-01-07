@@ -1,6 +1,6 @@
 export class Repository {
   static get(key) {
-    const logindata = localStorage.getItem(key);
+    const logindata = JSON.parse(localStorage.getItem(key));
     return logindata;
   }
   static set(key, value) {

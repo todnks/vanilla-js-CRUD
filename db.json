@@ -10,7 +10,7 @@
     {
       "email": "test123@email.com",
       "password": "123qwe123",
-      "loginDate": "2023-01-07T19:36:12.581Z",
+      "loginDate": "2023-01-07T21:06:37.475Z",
       "id": 5
     },
     {
@@ -19,6 +19,38 @@
       "registerDate": "2023-01-06T11:21:50.299Z",
       "loginDate": "2023-01-06T11:21:50.299Z",
       "id": 6
+    },
+    {
+      "email": "ttt111@aaa.com",
+      "password": "123qwe123",
+      "loginDate": "2023-01-07T22:23:45.752Z",
+      "id": 7
+    }
+  ],
+  "board": [
+    {
+      "userdata": {
+        "email": "test123@email.com",
+        "password": "123qwe123",
+        "loginDate": "2023-01-07T21:06:05.779Z",
+        "id": 5
+      },
+      "name": "13ㅁㄴㅇ",
+      "content": "123ㅁㅁㄴㅇ",
+      "writeDate": "2023-01-07T22:19:36.303Z",
+      "id": 8
+    },
+    {
+      "userdata": {
+        "email": "test123@email.com",
+        "password": "123qwe123",
+        "loginDate": "2023-01-07T21:06:05.779Z",
+        "id": 5
+      },
+      "name": "ㅁㄴㅇㅁㄴ1312",
+      "content": "ㅁㄴㅇㄴㅁㅇ2231",
+      "writeDate": "2023-01-07T22:21:21.502Z",
+      "id": 9
     }
   ]
 }
