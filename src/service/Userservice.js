@@ -42,7 +42,9 @@ export class Userservice {
       return;
     }
     this.repository.set('user', getuserdata);
-    await this.http.post({
+    await this.http.put(getuserdata.id, {
+      email,
+      password,
       loginDate: new Date(),
     });
     return true;

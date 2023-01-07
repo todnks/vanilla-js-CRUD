@@ -23,8 +23,18 @@ export class Http {
   }
 
   async post(params) {
-    const res = await fetch(`${this.baseurl}`, {
+    await fetch(`${this.baseurl}`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+  }
+
+  async put(path, params) {
+    await fetch(`${this.baseurl}/${path}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
