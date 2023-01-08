@@ -6,7 +6,7 @@ export class Http {
   constructor(basepath) {
     this.baseurl = `${baseUrl}${basepath}`;
   }
-  async get(params) {
+  async get(path, params) {
     const queryString = Object.keys(params)
       .map(
         (key, index) => `
@@ -16,7 +16,7 @@ export class Http {
       .join('')
       .trim();
     const res = await Promise.race([
-      fetch(`${this.baseurl}${queryString}`),
+      fetch(`${this.baseurl}${path}${queryString}`),
       new Promise((resolve) => setTimeout(() => resolve(false), 5000)),
     ]);
     return res.json();
@@ -39,6 +39,15 @@ export class Http {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
+    });
+  }
+
+  async delete(path) {
+    await fetch(`${this.baseurl}/${path}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   }
 }

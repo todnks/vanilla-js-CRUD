@@ -10,7 +10,7 @@ export class Userservice {
     this.repository = Repository;
   }
   async finduser(email) {
-    const userData = await this.http.get({
+    const userData = await this.http.get('', {
       email,
     });
     if (userData.length >= 1) {

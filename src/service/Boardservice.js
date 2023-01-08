@@ -16,11 +16,24 @@ export class Boardservice {
       ...params,
       writeDate: new Date(),
     };
-    console.log(data);
     await this.http.post(data);
   }
-  async listup(params) {
-    const list = await this.http.get(params);
+
+  async boardedit(path, params, userdata) {
+    this.http.put(path, {
+      userdata,
+      ...params,
+      writeDate: new Date(),
+      editboolean: true,
+    });
+  }
+
+  async listup(path, params) {
+    const list = await this.http.get(path, params);
     return list;
+  }
+
+  async boarddelete(path) {
+    await this.http.delete(path);
   }
 }

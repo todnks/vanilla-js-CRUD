@@ -25,6 +25,9 @@ export class Write extends Component {
     const name = this.selector('[name="name"]').value;
     const content = this.selector('[name="content"]').value;
     this.Boardservice.write({ name, content }, userdata);
+    alert('글작성완료');
+    router.push('/');
+    return;
   }
   template() {
     return `

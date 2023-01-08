@@ -10,7 +10,7 @@
     {
       "email": "test123@email.com",
       "password": "123qwe123",
-      "loginDate": "2023-01-07T21:06:37.475Z",
+      "loginDate": "2023-01-08T09:37:35.823Z",
       "id": 5
     },
     {
@@ -32,25 +32,14 @@
       "userdata": {
         "email": "test123@email.com",
         "password": "123qwe123",
-        "loginDate": "2023-01-07T21:06:05.779Z",
+        "loginDate": "2023-01-07T21:06:37.475Z",
         "id": 5
       },
-      "name": "13ㅁㄴㅇ",
-      "content": "123ㅁㅁㄴㅇ",
-      "writeDate": "2023-01-07T22:19:36.303Z",
-      "id": 8
-    },
-    {
-      "userdata": {
-        "email": "test123@email.com",
-        "password": "123qwe123",
-        "loginDate": "2023-01-07T21:06:05.779Z",
-        "id": 5
-      },
-      "name": "ㅁㄴㅇㅁㄴ1312",
-      "content": "ㅁㄴㅇㄴㅁㅇ2231",
-      "writeDate": "2023-01-07T22:21:21.502Z",
-      "id": 9
+      "name": "테스트",
+      "content": "테스트",
+      "writeDate": "2023-01-08T13:04:38.529Z",
+      "editboolean": false,
+      "id": 10
     }
   ]
 }

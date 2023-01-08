@@ -7,17 +7,18 @@ export class Board extends Component {
     this.Boardservice = new Boardservice();
   }
   async onMounted() {
-    this.list = await this.Boardservice.listup('');
+    this.list = await this.Boardservice.listup('', '');
     this.render();
   }
   template() {
     if (this.list) {
       return `
+      <div data-href="/">홈<div>
       ${this.list
         .map((data) => {
           return `
           <div class="board">
-          <div>글제목:${data.name}</div>
+          <div data-href="/view/${data.id}">글제목:${data.name}</div>
           <div>글내용:${data.content}</div>
           <div>글쓴이:${data.userdata.email}</div>
           <div>글쓴시간:${data.writeDate}</div>
