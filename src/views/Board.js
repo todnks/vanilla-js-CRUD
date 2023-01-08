@@ -19,7 +19,6 @@ export class Board extends Component {
           return `
           <div class="board">
           <div data-href="/view/${data.id}">글제목:${data.name}</div>
-          <div>글내용:${data.content}</div>
           <div>글쓴이:${data.userdata.email}</div>
           <div>글쓴시간:${data.writeDate}</div>
           </div>
@@ -28,6 +27,5 @@ export class Board extends Component {
         .join('')}
       `;
     }
-    return ``;
   }
 }
