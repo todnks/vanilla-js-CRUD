@@ -37,11 +37,9 @@ export class Router {
     new selectComponet({ element: this.element });
   }
   findroutes(path) {
-    if (path.indexOf('/view/') != -1) {
-      return Object.keys(this.#routes).findIndex((key) => key === '/view/');
-    }
-    if (path.indexOf('/edit/') != -1) {
-      return Object.keys(this.#routes).findIndex((key) => key === '/edit/');
+    if (path.indexOf('/view/') != -1 || path.indexOf('/edit/') != -1) {
+      const idxpage = path.replace(/[0-9]/g, '');
+      return Object.keys(this.#routes).findIndex((key) => key === idxpage);
     }
     return Object.keys(this.#routes).findIndex((key) => key === path);
   }
