@@ -2,29 +2,29 @@ import { Component } from '@/core/Component';
 import { Boardservice } from '@/service/Boardservice';
 import { Repository } from '@/core/Repository';
 import router from '@/router';
+import { Validator } from '@/core/Validator';
 
 export class Boardview extends Component {
   hash;
   list;
   user;
-  userchk;
   setup() {
+    this.Validator = Validator;
     this.Repository = Repository;
-    this.hash = location.hash.slice(
-      location.hash.length - 1,
-      location.hash.length
-    );
+    this.hash = this.Validator.getNumber(location.hash);
     this.Boardservice = new Boardservice();
     this.userchk = false;
   }
   async onMounted() {
     this.list = await this.Boardservice.listup(this.hash, '');
     this.user = this.Repository.get('user');
-    if (
-      this.list.userdata.email === this.user.email &&
-      this.list.userdata.password === this.user.password
-    ) {
-      this.userchk = true;
+    if (this.user && this.list) {
+      if (
+        this.list.userdata.email === this.user.email &&
+        this.list.userdata.password === this.user.password
+      ) {
+        this.userchk = true;
+      }
     }
     this.render();
     this.Eventadd('click', '.delete', () => {
@@ -32,10 +32,7 @@ export class Boardview extends Component {
     });
   }
   boarddelete() {
-    this.hash = location.hash.slice(
-      location.hash.length - 1,
-      location.hash.length
-    );
+    this.hash = this.Validator.getNumber(location.hash);
     this.Boardservice.boarddelete(this.hash);
     alert('글삭제완료');
     router.push('/');
@@ -65,7 +62,7 @@ export class Boardview extends Component {
       </div>
       `;
     }
-    if (this.list === undefined) {
+    if (!this.list) {
       return `
       <div>삭제된 글입니다</div>
       `;

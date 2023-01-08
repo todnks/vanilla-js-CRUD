@@ -11,4 +11,9 @@ export class Validator {
     );
     return ispasswordExp.test(value) || errormsg;
   }
+  static getNumber(value) {
+    const isNumber = new RegExp(/[^0-9]/g);
+    const result = value.replace(isNumber, '');
+    return result;
+  }
 }
