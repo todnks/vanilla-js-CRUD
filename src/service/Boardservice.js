@@ -30,6 +30,9 @@ export class Boardservice {
 
   async listup(path, params) {
     const list = await this.http.get(path, params);
+    if (Object.keys(list).length === 0) {
+      return false;
+    }
     return list;
   }
 
