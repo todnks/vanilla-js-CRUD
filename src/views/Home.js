@@ -17,7 +17,6 @@ export class Home extends Component {
     }
   }
   onMounted() {
-    router.start();
     this.Eventadd('click', '.logout', () => {
       this.logout();
       location.reload();
