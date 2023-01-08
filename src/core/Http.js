@@ -42,6 +42,16 @@ export class Http {
     });
   }
 
+  async patch(path, params) {
+    await fetch(`${this.baseurl}/${path}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+  }
+
   async delete(path) {
     await fetch(`${this.baseurl}/${path}`, {
       method: 'DELETE',

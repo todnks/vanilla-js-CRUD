@@ -38,9 +38,7 @@ export class Userservice {
       return;
     }
     this.repository.set('user', getuserdata);
-    await this.http.put(getuserdata.id, {
-      email,
-      password,
+    await this.http.patch(getuserdata.id, {
       loginDate: new Date(),
     });
     return true;
