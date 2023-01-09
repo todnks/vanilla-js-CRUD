@@ -4,14 +4,14 @@
       "email": "test@email.com",
       "password": "test1234",
       "registerDate": "2023-01-08T20:38:41.460Z",
-      "loginDate": "2023-01-08T20:38:41.460Z",
+      "loginDate": "2023-01-09T13:48:40.598Z",
       "id": 1
     },
     {
       "email": "test123@email.com",
       "password": "123qwe123",
       "registerDate": "2023-01-08T09:37:35.823Z",
-      "loginDate": "2023-01-08T09:37:35.823Z",
+      "loginDate": "2023-01-09T12:50:06.512Z",
       "id": 5
     },
     {
@@ -25,7 +25,7 @@
       "email": "ttt111@aaa.com",
       "password": "123qwe123",
       "registerDate": "2023-01-07T22:23:45.752Z",
-      "loginDate": "2023-01-07T22:23:45.752Z",
+      "loginDate": "2023-01-09T13:49:10.596Z",
       "id": 7
     }
   ],

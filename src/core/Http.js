@@ -1,10 +1,10 @@
 const baseUrl = 'http://localhost:3000';
 
-export class Http {
-  baseurl;
-  basepath;
-  constructor(basepath) {
-    this.baseurl = `${baseUrl}${basepath}`;
+export class http {
+  url;
+  basePath;
+  constructor(basePath) {
+    this.url = `${baseUrl}${basePath}`;
   }
   async get(path, params) {
     const queryString = Object.keys(params)
@@ -16,14 +16,14 @@ export class Http {
       .join('')
       .trim();
     const res = await Promise.race([
-      fetch(`${this.baseurl}${path}${queryString}`),
+      fetch(`${this.url}${path}${queryString}`),
       new Promise((resolve) => setTimeout(() => resolve(false), 5000)),
     ]);
     return res.json();
   }
 
   async post(params) {
-    await fetch(`${this.baseurl}`, {
+    await fetch(`${this.url}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,31 +33,47 @@ export class Http {
   }
 
   async put(path, params) {
-    await fetch(`${this.baseurl}/${path}`, {
+    const res = await fetch(`${this.url}/${path}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
     });
+    if (!res.json()) {
+      return false;
+    }
+    return true;
   }
 
   async patch(path, params) {
-    await fetch(`${this.baseurl}/${path}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(params),
-    });
+    const res = await Promise.race([
+      fetch(`${this.url}${path}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(params),
+      }),
+    ]);
+    if (!res.json()) {
+      return false;
+    }
+    return true;
   }
 
   async delete(path) {
-    await fetch(`${this.baseurl}/${path}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const res = await Promise.race([
+      fetch(`${this.url}/${path}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
+    ]);
+    if (!res.json()) {
+      return false;
+    }
+    return true;
   }
 }

@@ -1,13 +1,13 @@
-import { Component } from '@/core/Component';
-import { Boardservice } from '@/service/Boardservice';
+import { component } from '@/core/component';
+import { boardService } from '@/service/boardService';
 
-export class Board extends Component {
+export class board extends component {
   list;
   setup() {
-    this.Boardservice = new Boardservice();
+    this.boardService = new boardService();
   }
   async onMounted() {
-    this.list = await this.Boardservice.listup('', '');
+    this.list = await this.boardService.listup('', '');
     this.render();
   }
   template() {
@@ -16,6 +16,7 @@ export class Board extends Component {
       <div data-href="/">홈<div>
       ${this.list
         .map((data) => {
+          console.log(data);
           return `
           <div class="board">
           <div data-href="/view/${data.id}">글제목:${data.name}</div>

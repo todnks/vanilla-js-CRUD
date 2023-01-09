@@ -1,15 +1,17 @@
-export class Component {
+export class component {
   #element;
 
   constructor({ element }) {
     this.#element = element;
     this.setup();
     this.render();
-    this.Eventadd();
+    this.eventAdd();
     this.onMounted();
   }
+
   setup() {}
-  Eventadd(eventType, selector, callback, option = {}) {
+
+  eventAdd(eventType, selector, callback, option = {}) {
     const selectList = [...document.querySelectorAll(selector)];
     if (selectList.length > 1) {
       selectList.forEach((item) => {
@@ -27,6 +29,7 @@ export class Component {
   template() {
     return '';
   }
+
   onMounted() {}
 
   render() {

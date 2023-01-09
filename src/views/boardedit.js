@@ -1,24 +1,28 @@
-import { Component } from '@/core/Component';
-import { Repository } from '@/core/Repository';
-import { Validator } from '@/core/Validator';
+import { component } from '@/core/component';
+import { repository } from '@/core/repository';
+import { validator } from '@/core/validator';
 import router from '@/router';
-import { Boardservice } from '@/service/Boardservice';
+import { boardService } from '@/service/boardService';
 
-export class boardedit extends Component {
+export class boardEdit extends component {
   data;
   hash;
   user;
+
   setup() {
-    this.validator = Validator;
-    this.Repository = Repository;
-    this.Boardservice = new Boardservice();
+    this.validator = validator;
+    this.repository = repository;
+    this.boardService = new boardService();
     this.hash = this.validator.getNumber(location.hash);
   }
+
   async onMounted() {
-    this.data = await this.Boardservice.listup(this.hash, '');
-    this.user = this.Repository.get('user');
+    this.data = await this.boardService.listup(this.hash, '');
+    this.user = this.repository.get('user');
+
     if (this.user && this.data) {
       const { email, password, id } = this.data.userdata;
+
       if (
         this.user.email != email &&
         this.user.id != id &&
@@ -29,19 +33,26 @@ export class boardedit extends Component {
         return;
       }
     }
+
     this.render();
-    this.Eventadd('click', '.edit', () => {
-      this.boardedit();
+    this.eventAdd('click', '.edit', () => {
+      this.boardEdit();
     });
   }
-  boardedit() {
+  boardEdit() {
     this.hash = this.validator.getNumber(location.hash);
     const name = this.selector(`[name="name"]`).value;
     const content = this.selector(`[name="content"]`).value;
-    this.Boardservice.boardedit(`${this.hash}`, { name, content }, this.user);
-    alert('글수정완료');
-    router.push('/');
-    return;
+    const res = this.boardService.boardEdit(
+      `${this.hash}`,
+      { name, content },
+      this.user
+    );
+    if (res) {
+      alert('글수정완료');
+      router.push('/');
+      return;
+    }
   }
 
   template() {

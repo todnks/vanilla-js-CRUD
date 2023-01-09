@@ -1,7 +1,7 @@
-export class Repository {
+export class repository {
   static get(key) {
-    const logindata = JSON.parse(localStorage.getItem(key));
-    return logindata;
+    const data = JSON.parse(localStorage.getItem(key));
+    return data;
   }
   static set(key, value) {
     localStorage.setItem(key, JSON.stringify(value));

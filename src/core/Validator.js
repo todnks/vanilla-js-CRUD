@@ -1,15 +1,15 @@
-export class Validator {
-  static isemail(value, errormsg) {
-    const emailRegExp = new RegExp(
+export class validator {
+  static isEmail(value, errormsg) {
+    const isEmailRegExp = new RegExp(
       /([a-zA-Z0-9_-]+@+[a-zA-Z0-9]+\.+[a-zA-Z0-9])/
     );
-    return emailRegExp.test(value) || errormsg;
+    return isEmailRegExp.test(value) || errormsg;
   }
-  static ispassword(value, errormsg) {
-    const ispasswordExp = new RegExp(
+  static isPassword(value, errormsg) {
+    const isPasswordExp = new RegExp(
       /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d~!@#$%^&*()+|=]{8,}/
     );
-    return ispasswordExp.test(value) || errormsg;
+    return isPasswordExp.test(value) || errormsg;
   }
   static getNumber(value) {
     const isNumber = new RegExp(/[^0-9]/g);

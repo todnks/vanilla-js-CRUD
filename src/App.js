@@ -1,7 +1,7 @@
-import { Component } from '@/core/Component';
+import { component } from '@/core/component';
 import router from '@/router';
 
-export class App extends Component {
+export class App extends component {
   setup() {}
   onMounted() {
     router.start();

@@ -1,4 +1,4 @@
-import { Home } from '@/views/Home';
+import { home } from '@/views/home';
 
 export class Router {
   element;
@@ -28,18 +28,18 @@ export class Router {
     });
   }
   push(path) {
-    window.location.hash = this.findroutes(path) === -1 ? '/404' : path;
+    window.location.hash = this.findRoutes(path) === -1 ? '/404' : path;
   }
   routes() {
     const urlname = window.location.hash.replace('#', '');
-    let selectComponet = Object.values(this.#routes)[this.findroutes(urlname)];
-    if (!selectComponet) selectComponet = Home;
+    let selectComponet = Object.values(this.#routes)[this.findRoutes(urlname)];
+    if (!selectComponet) selectComponet = home;
     new selectComponet({ element: this.element });
   }
-  findroutes(path) {
+  findRoutes(path) {
     if (path.indexOf('/view/') != -1 || path.indexOf('/edit/') != -1) {
-      const idxpage = path.replace(/[0-9]/g, '');
-      return Object.keys(this.#routes).findIndex((key) => key === idxpage);
+      const idxPage = path.replace(/[0-9]/g, '');
+      return Object.keys(this.#routes).findIndex((key) => key === idxPage);
     }
     return Object.keys(this.#routes).findIndex((key) => key === path);
   }

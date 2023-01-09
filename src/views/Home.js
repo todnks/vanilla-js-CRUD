@@ -1,31 +1,30 @@
-import { Component } from '@/core/Component';
-import router from '@/router';
-import { Repository } from '@/core/Repository';
-import { Userservice } from '@/service/Userservice';
+import { component } from '@/core/component';
+import { repository } from '@/core/repository';
+import { userService } from '@/service/userService';
 
-export class Home extends Component {
-  userdata;
+export class home extends component {
+  userData;
   setup() {
-    this.Repository = Repository;
-    this.userdata = this.Repository.get('user');
-    this.userservice = new Userservice();
+    this.repository = repository;
+    this.userData = this.repository.get('user');
+    this.userService = new userService();
   }
   logout() {
-    if (this.userservice.logout()) {
+    if (this.userService.logout()) {
       alert('로그아웃');
       this.template();
     }
   }
   onMounted() {
-    this.Eventadd('click', '.logout', () => {
+    this.eventAdd('click', '.logout', () => {
       this.logout();
       location.reload();
     });
   }
   template() {
-    if (this.userdata) {
+    if (this.userData) {
       return `
-        <div>이메일:${this.userdata.email}</div>
+        <div>이메일:${this.userData.email}</div>
         <button class="logout">로그아웃</button>
         <div data-href="/write">글쓰기</div>
         <div data-href="/board">게시판</div>

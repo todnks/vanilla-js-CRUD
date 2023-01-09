@@ -1,81 +1,97 @@
-const http = new Http();
-import { Http } from '@/core/Http';
-import { Repository } from '@/core/Repository';
-import { Validator } from '@/core/Validator';
+import { http } from '@/core/http';
+import { repository } from '@/core/repository';
+import { validator } from '@/core/validator';
 
-export class Userservice {
+export class userService {
   constructor() {
-    this.http = new Http('/user/');
-    this.validator = Validator;
-    this.repository = Repository;
+    this.http = new http('/user/');
+    this.validator = validator;
+    this.repository = repository;
   }
-  async finduser(email) {
+
+  async findUser(email) {
     const userData = await this.http.get('', {
       email,
     });
+
     if (userData.length >= 1) {
       return userData.pop();
     }
+
     return false;
   }
-  async signin({ email, password }) {
-    const isEmail = this.validator.isemail(email, '이메일 형식을 지켜주세요.');
-    const isPassword = this.validator.ispassword(
+
+  async signIn({ email, password }) {
+    const isEmail = this.validator.isEmail(email, '이메일 형식을 지켜주세요.');
+    const isPassword = this.validator.isPassword(
       password,
       '비밀번호는 영문, 숫자 포함 8자리 이상이여야합니다.'
     );
+
     if (isEmail !== true) {
       alert(isEmail);
       return;
     }
+
     if (isPassword !== true) {
       alert(isPassword);
       return;
     }
-    const getuserdata = await this.finduser(email);
-    if (!getuserdata && password != getuserdata.password) {
+
+    const getUserData = await this.findUser(email);
+
+    if (!getUserData && password != getUserData.password) {
       alert('아이디혹은 비밀번호 틀림');
       return;
     }
-    this.repository.set('user', getuserdata);
-    await this.http.patch(getuserdata.id, {
+
+    const loginDate = this.http.patch(getUserData.id, {
       loginDate: new Date(),
     });
-    return true;
+    this.repository.set('user', getUserData);
+
+    return loginDate;
   }
-  async signup({ email, password }) {
-    const isEmail = this.validator.isemail(email, '이메일 형식을 지켜주세요.');
-    const isPassword = this.validator.ispassword(
+
+  async signUp({ email, password }) {
+    const isEmail = this.validator.isEmail(email, '이메일 형식을 지켜주세요.');
+    const isPassword = this.validator.isPassword(
       password,
       '비밀번호는 영문, 숫자 포함 8자리 이상이여야합니다.'
     );
+
     if (isEmail !== true) {
       alert(isEmail);
       return;
     }
+
     if (isPassword !== true) {
       alert(isPassword);
       return;
     }
-    const duplicateuser = await this.finduser({ email });
-    if (duplicateuser) {
+
+    const duplicateUser = await this.findUser({ email });
+
+    if (duplicateUser) {
       alert('중복된 이메일');
       return;
     }
+
     await this.http.post({
       email,
       password,
       registerDate: new Date(),
       loginDate: new Date(),
     });
+
     return true;
   }
 
   logout() {
-    if (this.repository.get('user') === undefined) {
-      return false;
-    }
+    if (!this.repository.get('user')) return;
+
     this.repository.remove('user');
+
     return true;
   }
 }

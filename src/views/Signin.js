@@ -1,20 +1,20 @@
-import { Component } from '@/core/Component';
+import { component } from '@/core/component';
 import router from '@/router';
-import { Userservice } from '@/service/Userservice';
+import { userService } from '@/service/userService';
 
-export class Signin extends Component {
+export class signIn extends component {
   setup() {
-    this.userservice = new Userservice();
+    this.userService = new userService();
   }
   onMounted() {
-    this.Eventadd('click', '.signin', () => {
-      this.signin();
+    this.eventAdd('click', '.signin', () => {
+      this.signIn();
     });
   }
-  async signin() {
+  async signIn() {
     const email = this.selector(`[name=email]`).value;
     const password = this.selector(`[name=password]`).value;
-    const succces = await this.userservice.signin({ email, password });
+    const succces = await this.userService.signIn({ email, password });
     if (succces) {
       alert('로그인완료');
       router.push('/');

@@ -1,31 +1,32 @@
-import { Http } from '@/core/Http';
+import { http } from '@/core/http';
 
-export class Boardservice {
+export class boardService {
   constructor() {
-    this.http = new Http('/board/');
+    this.http = new http('/board/');
   }
 
-  async write(params, userdata) {
+  async write(params, userData) {
     const { name, content } = params;
-    if (name === '' && content === '') {
+    if (name === '' || content === '') {
       alert('내용입력해');
       return;
     }
     const data = {
-      userdata,
+      userData,
       ...params,
       writeDate: new Date(),
     };
     await this.http.post(data);
   }
 
-  async boardedit(path, params, userdata) {
-    this.http.put(path, {
-      userdata,
+  boardEdit(path, params, userData) {
+    const res = this.http.put(path, {
+      userData,
       ...params,
       writeDate: new Date(),
       editboolean: true,
     });
+    return res;
   }
 
   async listup(path, params) {
@@ -36,7 +37,8 @@ export class Boardservice {
     return list;
   }
 
-  async boarddelete(path) {
+  async boardDelete(path) {
     await this.http.delete(path);
+    return true;
   }
 }

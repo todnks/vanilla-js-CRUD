@@ -1,30 +1,35 @@
-import { Component } from '@/core/Component';
-import { Repository } from '@/core/Repository';
+import { component } from '@/core/component';
+import { repository } from '@/core/repository';
 import router from '@/router';
-import { Boardservice } from '@/service/Boardservice';
+import { boardService } from '@/service/boardService';
 
-export class Write extends Component {
-  userdata;
+export class write extends component {
+  userData;
   setup() {
-    this.Boardservice = new Boardservice();
-    this.repository = Repository;
-    this.userdata = this.repository.get('user');
-    if (this.userdata === null) {
+    this.boardService = new boardService();
+    this.repository = repository;
+    this.userData = this.repository.get('user');
+    if (!this.userData) {
       alert('로그인하고와');
       router.push('/');
       return;
     }
   }
   onMounted() {
-    this.Eventadd('click', '.write', () => {
+    this.eventAdd('click', '.write', () => {
       this.write();
     });
   }
   async write() {
-    const userdata = this.repository.get('user');
+    const userData = this.repository.get('user');
     const name = this.selector('[name="name"]').value;
     const content = this.selector('[name="content"]').value;
-    this.Boardservice.write({ name, content }, userdata);
+    if (!userData) {
+      alert('로그인후에 이용가능합니다');
+      router.push('/');
+      return;
+    }
+    this.boardService.write({ name, content }, userData);
     alert('글작성완료');
     router.push('/');
     return;
